@@ -26,11 +26,11 @@ import numpy as np
 import PIL
 from io import BytesIO
 from matplotlib import pyplot as plt
-from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, Image
 
 parser = argparse.ArgumentParser()
 parser.add_argument('datafile', type=str, help="Specify the data file")
+parser.add_argument('--nocharts', action='store_true', help="Disable chart generation")
 args = parser.parse_args()
 
 # Start by simply loading the data from CSV
@@ -40,8 +40,8 @@ df = pd.read_csv(args.datafile, true_values='Yes', false_values='No', na_values=
 for i in df['Question Number'].unique():
     print("Processing question {}".format(i))
     q = df[df['Question Number'] == i][['Question Number', 'Vote Title', 'Question Title']]
-    fig, ax = plt.subplots(figsize=(3, 5))
-    sns.catplot(ax=ax, y="Vote Title", kind="box", data=q)
+    fig, ax = plt.subplots(figsize=(6, 10))
+    sns.catplot(ax=ax, y="Vote Title", kind="swarm", data=q)
     plt.ylabel(q['Question Title'][:1].values[0])
 
     # OK, let's try a little PDF generation here...
@@ -59,6 +59,7 @@ for i in df['Question Number'].unique():
     tabledata = [np.array([im], dtype=object).tolist()]
     table = Table(tabledata)
     
-    doc = SimpleDocTemplate("question-{}.pdf".format(i), pagesize=letter)
+    doc = SimpleDocTemplate("question-{}.pdf".format(i),
+            pagesize=(1800,1013.4))
     doc.build([table])
 
