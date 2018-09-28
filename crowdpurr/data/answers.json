@@ -1,0 +1,63 @@
+{
+  "1": {
+          "q": "What’s the average price of gas in Missouri right now?",
+  "h": "(regular unleaded; last week) (Bus uses diesel… but we are asking for regular!)",
+    "a": "$2.65"},
+"2": {
+        "q": "How many miles is it from Slalom office to the hotel?",
+    "h": "(according to Google Maps best route)",
+    "a": "317 miles"},
+"3": {
+    "q": "What year was this poster created?",
+    "h": "(Hank Williams, Hatch Show Print, maybe you can guess by the way it looks)",
+    "a": "1950"},
+"4": {
+    "q": "How many National Parks are there in the United States?",
+    "h": "(The big ones! Must have “National Park” in the name, excludes Battlefields, rivers, etc. Great for being curious and exploring! Show image of one: Great Smokey Mountains National Park. Gatlinburg, TN)",
+    "a": "59"},
+"5": {
+    "q": "How many feet tall is the St. Louis Arch? (10 feet per story)",
+    "h": "(tallest building in the STL skyline, 10 feet per story)",
+    "a": "630 ft."},
+"6": {
+    "q": "How many rooms are in this hotel?",
+    "h": "(Look around you… it’s really big!!!)",
+    "a": "2888"},
+"7": {
+    "q": "How many Grammys has Taylor Swift won?",
+    "h": "(This is Saint Fultz favorite artist. Shake it off! 2014 she crossed over)",
+    "a": "10"},
+"8": {
+    "q": "What is the seating capacity of the Ryman Auditorium?",
+    "h": "(If you haven’t been there, it’s a church turned into a venue… here’s a picture of it.)",
+    "a": "2,362"},
+"9": {
+    "q": "How many pounds does NASA’s “Curiosity” rover weigh?",
+    "h": "(No comparison… it’s freakin’ Mars dude. We tried to get it here… it’s about the size of a car. It’s 9ft long, 9ft wide, and 7 ft high. Launched in 2011)",
+    "a": "1,982 lbs"},
+"10":{
+    "q": "What is the average high temperature of Nashville in the month of October?",
+    "h": "(it’s not too far away from STL)",
+    "a": "72 degrees"},
+"11":{
+    "q": "What is the average median income for the state of Tennessee?",
+    "h": "(42nd highest… not great… city is $66k)",
+    "a": "$47,275"},
+"12":{
+    "q": "How many gallons of beer did the office order last month? (8/15-9/15)",
+    "h": "(A five-gallon bucket might be a useful reference… or an aquarium 5-10 gallons)",
+    "a": "72.6 gallons"},
+"13":{
+    "q": "What will Apple Stock be next week at this time? (Currently $221-$225)",
+    "a": "0"},
+"14":{
+    "q": "How many golf balls will Stefanie lose today in the Golf Excursion?",
+    "a": "?"},
+"15":{
+    "q": "How many selfies is Barb Steen going to take this weekend?",
+    "a": "?"},
+"16":{
+    "q": "How many STL Slalomites will exist Jan 1, 2018?",
+    "a": "?"}
+}
+
