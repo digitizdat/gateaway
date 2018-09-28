@@ -1,10 +1,10 @@
 {
   "1": {
-          "q": "What’s the average price of gas in Missouri right now?",
-  "h": "(regular unleaded; last week) (Bus uses diesel… but we are asking for regular!)",
+    "q": "What’s the average price of gas in Missouri right now?",
+    "h": "(regular unleaded; last week) (Bus uses diesel… but we are asking for regular!)",
     "a": "$2.65"},
 "2": {
-        "q": "How many miles is it from Slalom office to the hotel?",
+    "q": "How many miles is it from Slalom office to the hotel?",
     "h": "(according to Google Maps best route)",
     "a": "317 miles"},
 "3": {
@@ -12,11 +12,11 @@
     "h": "(Hank Williams, Hatch Show Print, maybe you can guess by the way it looks)",
     "a": "1950"},
 "4": {
-    "q": "How many National Parks are there in the United States?",
+    "q": "How many National Parks are there in the US?",
     "h": "(The big ones! Must have “National Park” in the name, excludes Battlefields, rivers, etc. Great for being curious and exploring! Show image of one: Great Smokey Mountains National Park. Gatlinburg, TN)",
     "a": "59"},
 "5": {
-    "q": "How many feet tall is the St. Louis Arch? (10 feet per story)",
+    "q": "How many feet tall is the St. Louis Arch?",
     "h": "(tallest building in the STL skyline, 10 feet per story)",
     "a": "630 ft."},
 "6": {
@@ -36,25 +36,25 @@
     "h": "(No comparison… it’s freakin’ Mars dude. We tried to get it here… it’s about the size of a car. It’s 9ft long, 9ft wide, and 7 ft high. Launched in 2011)",
     "a": "1,982 lbs"},
 "10":{
-    "q": "What is the average high temperature of Nashville in the month of October?",
+    "q": "Average high temperature of Nashville in October?",
     "h": "(it’s not too far away from STL)",
     "a": "72 degrees"},
 "11":{
-    "q": "What is the average median income for the state of Tennessee?",
+    "q": "Median income for the state of Tennessee?",
     "h": "(42nd highest… not great… city is $66k)",
     "a": "$47,275"},
 "12":{
-    "q": "How many gallons of beer did the office order last month? (8/15-9/15)",
+    "q": "How many gallons of beer did we order last month?",
     "h": "(A five-gallon bucket might be a useful reference… or an aquarium 5-10 gallons)",
     "a": "72.6 gallons"},
 "13":{
-    "q": "What will Apple Stock be next week at this time? (Currently $221-$225)",
+    "q": "What will Apple Stock be next week at this time?",
     "a": "0"},
 "14":{
-    "q": "How many golf balls will Stefanie lose today in the Golf Excursion?",
+    "q": "How many golf balls will Stefanie lose today?",
     "a": "?"},
 "15":{
-    "q": "How many selfies is Barb Steen going to take this weekend?",
+    "q": "How many selfies is Barb Steen going to take?",
     "a": "?"},
 "16":{
     "q": "How many STL Slalomites will exist Jan 1, 2018?",

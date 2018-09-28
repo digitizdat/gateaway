@@ -65,6 +65,8 @@ for i in df['Question Number'].unique():
         qmean = "NaN"
     else:
         qmean = math.floor(qmean)
+        # Insert commas every three digits
+        qmean = "{:,}".format(qmean)
 
     # 10% trimmed series
     #after = trimval = max(math.floor(p.count()*.1), 1)
@@ -102,7 +104,7 @@ for i in df['Question Number'].unique():
     # by (1/255).
     c.setFillColorRGB(0.17647059, 0.44705882, 0.75686275)
     c.setFont('Arial', 58)
-    c.drawCentredString(pagex/2.0, pagey-100, ylabel)
+    c.drawCentredString(pagex/2.0, pagey-100, qna[str(i)]['q'])
     c.drawCentredString((pagex/8.0*6), (pagey/8.0)*5+60, "Wisdom of the Crowd")
     c.drawCentredString((pagex/8.0*6), (pagey/8.0)*3+25, "Actual Answer")
 
