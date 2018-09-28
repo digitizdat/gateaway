@@ -25,6 +25,7 @@ import seaborn as sns
 import numpy as np
 import PIL
 import math
+import json
 from io import BytesIO
 from matplotlib import pyplot as plt
 from reportlab.pdfgen import canvas
@@ -41,12 +42,15 @@ parser.add_argument('datafile', type=str, help="Specify the data file")
 parser.add_argument('--nocharts', action='store_true', help="Disable chart generation")
 args = parser.parse_args()
 
-# Start by simply loading the data from CSV
-df = pd.read_csv(args.datafile, true_values='Yes', false_values='No', na_values='-')
-
 # Set PDF document parameters
 pagex = 1800
 pagey = 1013.4
+
+# Load the data from CSV
+df = pd.read_csv(args.datafile, true_values='Yes', false_values='No', na_values='-')
+
+# Load the answers
+qna = json.load(open('data/answers.json'))
 
 # Loop through all the results, creating a box chart for each.
 for i in df['Question Number'].unique():
@@ -57,15 +61,17 @@ for i in df['Question Number'].unique():
     # Calculate max/min/mean
     p = q['Vote Title']
     qmean = p.mean()
-    qmax = p.max()
-    qmin = p.min()
+    if math.isnan(qmean) is True:
+        qmean = "NaN"
+    else:
+        qmean = math.floor(qmean)
 
     # 10% trimmed series
     #after = trimval = max(math.floor(p.count()*.1), 1)
     #s = p.sort_values().reset_index(drop=True).truncate(trimval, p.count()-1-trimval)
 
     if args.nocharts is False:
-        fig, ax = plt.subplots(figsize=(5.75, 8.75))
+        fig, ax = plt.subplots(figsize=(5.5, 8.25))
         sns.catplot(ax=ax, y="Vote Title", kind="swarm", data=q, alpha=0.5)
         plt.ylabel(ylabel)
 
@@ -77,6 +83,8 @@ for i in df['Question Number'].unique():
     else:
         filename = 'assets/blank-figure.png'
 
+    # Load the answer
+
     # Convert the PNG image to a Reportlab Flowable object
     im = PIL.Image.open(filename)
     buf = BytesIO()
@@ -86,21 +94,30 @@ for i in df['Question Number'].unique():
     # Draw the PDF canvas using the Arial font in Slalom blue
     c = canvas.Canvas("question-%02d.pdf" % i, pagesize=(pagex, pagey))
     pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+    pdfmetrics.registerFont(TTFont('Arial Bold', 'Arial Bold.ttf'))
 
+    # Draw the titles
     # The way Reportlabs processes RGB values is so strange... The value must
     # be between 0 and 1, so just take your RGB values and multiply them each
     # by (1/255).
     c.setFillColorRGB(0.17647059, 0.44705882, 0.75686275)
-    c.setFont('Arial', 38)
+    c.setFont('Arial', 58)
     c.drawCentredString(pagex/2.0, pagey-100, ylabel)
-    c.setFont('Arial', 20)
-    c.drawString(100, 100, "Slalom")
-    im.drawOn(c, 150, 150)
+    c.drawCentredString((pagex/8.0*6), (pagey/8.0)*5+60, "Wisdom of the Crowd")
+    c.drawCentredString((pagex/8.0*6), (pagey/8.0)*3+25, "Actual Answer")
 
+    # Draw the numbers
     c.setFillColorRGB(0.5254902, 0.5254902, 0.5254902)
-    c.line(pagex/2.0, 200, pagex/2.0, pagey-200)
-    c.setFont('Arial', 100)
-    c.drawString((pagex/3.0)*2, (pagey/4.0)*3, str(math.floor(qmean)))
+    c.setFont('Arial Bold', 150)
+    c.drawCentredString((pagex/8.0)*6, (pagey/32.0)*17, str(qmean))
+    c.drawCentredString((pagex/8.0)*6, (pagey/4.0), qna[str(i)]['a'])
+
+    # Draw the center line
+    c.setStrokeColorRGB(0.7, 0.7, 0.7)
+    c.line(pagex/2.0, 100, pagex/2.0, pagey-200)
+
+    # Insert the chart
+    im.drawOn(c, 200, 125)
 
     # Build the PDF
     c.save()
