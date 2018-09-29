@@ -40,6 +40,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 parser = argparse.ArgumentParser()
 parser.add_argument('datafile', type=str, help="Specify the data file")
 parser.add_argument('--nocharts', action='store_true', help="Disable chart generation")
+parser.add_argument('--trim', default=0.0, type=float, help="Percentage (as a float value) of results to trim before calculating the mean")
 args = parser.parse_args()
 
 # Set PDF document parameters
@@ -58,19 +59,12 @@ for i in df['Question Number'].unique():
     q = df[df['Question Number'] == i][['Question Number', 'Vote Title', 'Question Title']]
     ylabel = "Q{}: {}".format(i, q['Question Title'][:1].values[0])
 
-    # Calculate max/min/mean
-    p = q['Vote Title']
-    qmean = p.mean()
-    if math.isnan(qmean) is True:
-        qmean = "NaN"
-    else:
-        qmean = math.floor(qmean)
-        # Insert commas every three digits
-        qmean = "{:,}".format(qmean)
-
-    # 10% trimmed series
-    #after = trimval = max(math.floor(p.count()*.1), 1)
-    #s = p.sort_values().reset_index(drop=True).truncate(trimval, p.count()-1-trimval)
+    # Trimmed series
+    if args.trim > 0.0:
+        q = q.dropna()
+        after = trimval = max(math.floor(len(q)*args.trim), 1)
+        before = len(q)-1-trimval
+        q = q.sort_values('Vote Title').reset_index(drop=True).truncate(after, before)
 
     if args.nocharts is False:
         fig, ax = plt.subplots(figsize=(5.5, 8.25))
@@ -84,6 +78,15 @@ for i in df['Question Number'].unique():
         plt.close()
     else:
         filename = 'assets/blank-figure.png'
+
+    # Calculate max/min/mean
+    qmean = q['Vote Title'].mean()
+    if math.isnan(qmean) is True:
+        qmean = "NaN"
+    else:
+        qmean = math.floor(qmean)
+        # Insert commas every three digits
+        qmean = "{:,}".format(qmean)
 
     # Load the answer
 
