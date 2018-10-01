@@ -3,9 +3,11 @@
 To run this yourself, just clone the repo, install the Python dependencies (I recommend using the Anaconda Python distro), then run the script
 against the data file in the data directory from Sep 29, 2018.
 
-To install the dependencies using the Anaconda distro, I think this should do it:
+After [installing Anaconda](https://www.anaconda.com/download), install the dependencies using the conda command. I think this should do it:
 
 `conda create -n pydata pandas numpy scipy seaborn ipython-notebook python=3`
+
+`source activate pydata`
 
 `pip install reportlab`
 
